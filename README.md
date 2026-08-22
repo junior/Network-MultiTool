@@ -1,6 +1,6 @@
 # WBITT Network-Multitool (Formerly `praqma/Network-MultiTool`)
 
-A (**multi-arch**) multitool for container/network testing and troubleshooting. The main docker image is based on Alpine Linux. There is a Fedora variant to be used in environments which require the image to be based only on RedHat Linux, or any of it's derivatives.
+A (**multi-arch**) multitool for container/network testing and troubleshooting. The main docker image is based on Alpine Linux. There is a Fedora variant to be used in environments which require the image to be based only on RedHat Linux, or any of it's derivatives. There is also a Debian 13 (trixie) variant, for environments which standardize on Debian based images.
 
 The container image contains lots of tools, as well as a `nginx` web server, which listens on port `80` and `443` by default. The web server helps to run this container-image in a straight-forward way, so you can simply `exec` into the container and use various tools.
 
@@ -31,6 +31,8 @@ docker pull wbitt/network-multitool
 * openshift , openshift-minimal (openshift compatible - **minimal**) - Ports: **1180, 11443**
 * openshift-extra (openshift compatible with **extra tools**) - Ports: **1180, 11443**
 * fedora, fedora-minimal ( **'Minimal'** Fedora based image )
+* debian13 ( **'Minimal'** Debian 13 (trixie) based image )
+* debian13-extra (Debian 13 (trixie) based image - with **extra tools** )
 
 
 ### Important notes about openshift variant:
@@ -100,6 +102,41 @@ All tools from "minimal", plus:
 * `/bin/sh` shell interpreter - not `/bin/bash`
 
 **Size:** 72 MB uncompressed
+
+
+## Tools included in "debian13":
+* apt package manager
+* Nginx Web Server (port `80`, port `443`) - with customizable ports!
+* awk, cut, diff, find, grep, sed, vi editor, wc
+* curl, wget
+* dig, nslookup, host
+* ip, ifconfig, route
+* traceroute, tracepath, mtr, tcptraceroute (for layer 4 packet tracing)
+* ping, arp, arping
+* ps, netstat, ss
+* gzip, cpio, tar
+* telnet client, netcat (nc)
+* tcpdump
+* ssh client, rsync, scp
+* jq
+* bash
+
+**Size:** 47 MB compressed, 126 MB uncompressed
+
+## Tools included in "debian13-extra":
+All tools from "debian13", plus:
+* iperf3
+* ethtool, mii-tool
+* nmap
+* tshark
+* lftp client
+* socat
+* ApacheBench (ab)
+* mysql (MariaDB) & postgresql client
+* smbclient, snmp tools
+* git
+
+**Size:** 171 MB compressed, 564 MB uncompressed
 
 
 **Note:** The SSL certificates are generated for "localhost", are self signed, and placed in `/certs/` directory. During your testing, ignore the certificate warning/error. While using curl, you can use `-k` to ignore SSL certificate warnings/errors.

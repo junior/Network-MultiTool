@@ -25,6 +25,10 @@ jobs:
             dockerfile: Dockerfile.extra
           - name: openshift
             dockerfile: Dockerfile.openshift
+          - name: debian13
+            dockerfile: Dockerfile.debian13
+          - name: debian13-extra
+            dockerfile: Dockerfile.debian13-extra
 #          - name: fedora
 #            dockerfile: Dockerfile.fedora
     steps:
